@@ -1,5 +1,7 @@
 # vDocSign
 
+## Windows
+
 Ein Python3-Programm, das .docx-Dateien einliest und einen eingescannten Stempel mit Unterschrift anhängt und das Dokument anschließend als PDF speichert. 
 
 Bibliotheken
@@ -39,3 +41,51 @@ Wichtige Hinweise
     Bildformat: Der Stempel mit Unterschrift sollte im Format .png mit transparentem Hintergrund sein, um ein sauberes Ergebnis zu erzielen.
 
     Pfad-Anpassungen!
+
+
+## Linux
+
+
+Benötigten Python-Pakete und LibreOffice:
+
+    pip install python-docx Pillow
+    sudo apt-get install libreoffice
+
+python-docx: Zum Bearbeiten von .docx-Dateien.  
+Pillow: Zum Arbeiten mit Bildern.  
+LibreOffice: Zum Konvertieren von .docx in PDF.  
+
+Codes
+
+    Einlesen des .docx-Dokuments:
+        Mit Document(docx_path) wird das .docx-Dokument geladen.
+
+    Stempel hinzufügen:
+        Mit add_picture(image_path, width=Inches(2.5)) wird das Bild eingefügt. Die Breite kann angepasst werden.
+
+    Speichern des .docx-Dokuments:
+        Das bearbeitete .docx wird unter output_docx_path gespeichert.
+
+    Konvertieren mit LibreOffice:
+        subprocess.run() führt LibreOffice im Headless-Modus aus, um das .docx in ein PDF zu konvertieren:
+
+        libreoffice --headless --convert-to pdf <dateiname> --outdir <zielverzeichnis>
+
+        Der Headless-Modus erlaubt die Ausführung ohne grafische Oberfläche.
+
+Wichtige Hinweise
+
+    Bildformat: Das Bild für den Stempel sollte vorzugsweise ein .png mit transparentem Hintergrund sein.  
+    Pfad-Anpassungen: Stelle sicher, dass die Pfade zu den Dateien korrekt sind.  
+    LibreOffice-Verfügbarkeit: Überprüfe mit libreoffice --version, ob LibreOffice korrekt installiert ist.  
+
+Ausführung des Programms
+
+    Speichere den Code in einer Datei, z.B. add_stamp.py.
+
+    Führe das Skript aus:
+
+    python3 add_stamp.py
+
+
+
