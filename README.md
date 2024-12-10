@@ -39,4 +39,3 @@ Wichtige Hinweise
     Bildformat: Der Stempel mit Unterschrift sollte im Format .png mit transparentem Hintergrund sein, um ein sauberes Ergebnis zu erzielen.
 
     Pfad-Anpassungen!
-

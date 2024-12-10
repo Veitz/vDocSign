@@ -30,5 +30,6 @@ image_stamp_path = "stempel.png"  # Pfad zum eingescannten Stempel mit Unterschr
 docx_output_path = "output_with_stamp.docx"
 pdf_output_path = "output_with_stamp.pdf"
 
+
 # Funktion ausführen
 add_stamp_and_signature(docx_input_path, image_stamp_path, docx_output_path, pdf_output_path)
