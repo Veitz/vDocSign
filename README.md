@@ -1,5 +1,9 @@
 # vDocSign
 
+![image description](https://i.ibb.co/6yYnSBb/vDocSign.png)
+
+<!-- <img src="https://i.ibb.co/6yYnSBb/vDocSign.png"/> -->
+
 ## Windows
 
 Ein Python3-Programm, das .docx-Dateien einliest und einen eingescannten Stempel mit Unterschrift anhängt und das Dokument anschließend als PDF speichert. 
@@ -22,7 +26,8 @@ Erklärung des Codes
         Die Datei wird mit Document(docx_path) geöffnet.
 
     Stempel/Unterschrift hinzufügen:
-        Mit add_picture(image_path, width=Inches(2.5)) wird das Bild des Stempels eingefügt. Die Breite kann angepasst werden.
+        Mit add_picture(image_path, width=Inches(2.5)) wird das Bild des Stempels eingefügt. 
+        Die Breite kann angepasst werden.
 
     Seite hinzufügen:
         add_page_break() fügt eine neue Seite hinzu, damit der Stempel am Ende platziert wird.
@@ -36,9 +41,11 @@ Erklärung des Codes
 
 Wichtige Hinweise
 
-    Kompatibilität: docx2pdf funktioniert nur unter Windows und macOS. Für Linux kannst du pandoc oder LibreOffice zur Konvertierung verwenden.
+    Kompatibilität: docx2pdf funktioniert nur unter Windows und macOS. Für Linux kannst du pandoc 
+    oder LibreOffice zur Konvertierung verwenden.
 
-    Bildformat: Der Stempel mit Unterschrift sollte im Format .png mit transparentem Hintergrund sein, um ein sauberes Ergebnis zu erzielen.
+    Bildformat: Der Stempel mit Unterschrift sollte im Format .png mit transparentem Hintergrund sein, 
+    um ein sauberes Ergebnis zu erzielen.
 
     Pfad-Anpassungen!
 
@@ -79,13 +86,24 @@ Wichtige Hinweise
     Pfad-Anpassungen: Stelle sicher, dass die Pfade zu den Dateien korrekt sind.  
     LibreOffice-Verfügbarkeit: Überprüfe mit libreoffice --version, ob LibreOffice korrekt installiert ist.  
 
+    Um den Stempel direkt am Ende des vorhandenen Textes auf derselben Seite einzufügen, 
+    müssen wir den Seitenumbruch entfernen und stattdessen leere Absätze einfügen. 
+    Damit wird sichergestellt, dass der Stempel nur dann nach unten geschoben wird, 
+    wenn tatsächlich Platz vorhanden ist.
+
+Blockimport
+
+    Der Blockimport wird per vDocSign_linux_Blockimport realisiert.
+    Der Code liest alle .docx-Dateien aus dem Ordner "input-docxs" ein, 
+    fügt den Stempel entsprechend ein und speichert die bearbeiteten Dateien 
+    mit dem gleichen Namen im Ausgabeordner "output-docxs". Anschließend werden 
+    die Dateien in PDFs umgewandelt und ebenfalls gespeichert.
+
 Ausführung des Programms
 
-    Speichere den Code in einer Datei, z.B. add_stamp.py.
+    Führe das gewünschte Skript aus:
 
-    Führe das Skript aus:
-
-    python3 add_stamp.py
+    python3 xxx.py
 
 
 

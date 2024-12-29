@@ -1,5 +1,6 @@
 from docx import Document
 from docx.shared import Inches
+from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
 import subprocess
 import os
 
@@ -8,12 +9,15 @@ def add_stamp_and_signature(docx_path, image_path, output_docx_path, output_pdf_
     # Öffne das bestehende .docx-Dokument
     doc = Document(docx_path)
 
-    # Füge eine neue Seite hinzu
-    doc.add_page_break()
+    # Füge 3 leere Zeilen am Ende des Dokuments ein
+    for _ in range(2):
+        doc.add_paragraph("")
 
-    # Füge das Bild (Stempel mit Unterschrift) am Ende ein
-    doc.add_paragraph(" ")
-    doc.add_picture(image_path, width=Inches(2.5))  # Passe die Breite entsprechend an
+    # Füge das Bild (Stempel mit Unterschrift) rechtsbündig ein
+    paragraph = doc.add_paragraph()
+    run = paragraph.add_run()
+    run.add_picture(image_path, width=Inches(1.5))  # Passe die Breite entsprechend an
+    paragraph.alignment = WD_PARAGRAPH_ALIGNMENT.RIGHT  # Rechtsbündige Ausrichtung
 
     # Speichere das modifizierte .docx-Dokument
     doc.save(output_docx_path)
