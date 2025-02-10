@@ -1,12 +1,16 @@
+# pip install python-docx
+# python -m pip install PyQt5
 import sys
 import os
 import glob
 import subprocess
 
+from PyQt5.QtWidgets import QMessageBox
+
 try:
     from PyQt5 import QtWidgets, QtGui
 except ModuleNotFoundError:
-    print("PyQt5 is not installed. Please install it using 'pip install PyQt5'")
+    print("PyQt5 ist nicht installiert, benutze 'pip install PyQt5'")
     sys.exit(1)
 from docx import Document
 from docx.shared import Inches
@@ -16,7 +20,7 @@ from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
 class DocxProcessorApp(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Docx Stempel und Signatur")
+        self.setWindowTitle("Docx --> Stempel/Signatur --> PDF")
         self.setGeometry(100, 100, 600, 400)
 
         # Initialisiere Pfade
@@ -69,10 +73,21 @@ class DocxProcessorApp(QtWidgets.QMainWindow):
     def create_menu(self):
         menubar = self.menuBar()
         file_menu = menubar.addMenu("&Datei")
-
         exit_action = QtWidgets.QAction("Beenden", self)
         exit_action.triggered.connect(self.close)
         file_menu.addAction(exit_action)
+
+        menubar = self.menuBar()
+        file_menu = menubar.addMenu("&?")
+        about_action = QtWidgets.QAction('About', self)
+        about_action.triggered.connect(self.showAbout)
+        file_menu.addAction(about_action)
+
+    def showAbout(self, version):
+        QMessageBox.information(self, 'About', f'vDocSign        \n \n '
+                                                     f'Veitzdev      \n \n'
+                                                     f'Version: 1.0      \n ')
+
 
     def select_input_folder(self):
         folder = QtWidgets.QFileDialog.getExistingDirectory(self, "Eingabeordner auswählen")
@@ -146,7 +161,7 @@ class DocxProcessorApp(QtWidgets.QMainWindow):
         ], check=True)
 
 
-# Hauptprogramm
+# run
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     main_window = DocxProcessorApp()
